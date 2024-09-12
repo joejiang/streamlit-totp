@@ -1,0 +1,4 @@
+streamlit==1.22.0  # For Streamlit app
+pyotp==2.6.0       # For generating and validating TOTP
+qrcode==7.3.1      # For generating QR codes
+Pillow==9.2.0      # For image processing (required by qrcode)
