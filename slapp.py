@@ -18,8 +18,7 @@ def enroll_user(user_key):
 
     # Generate a unique secret for the user (if not already enrolled)
     if user_id not in user_secrets:
-        # secret = pyotp.random_base32()
-        secret = "12345678"
+        secret = pyotp.random_base32()
         user_secrets[user_id] = secret
     else:
         secret = user_secrets[user_id]
