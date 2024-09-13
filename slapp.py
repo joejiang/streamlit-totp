@@ -26,7 +26,7 @@ def enroll_user(user_key):
     totp = pyotp.TOTP(secret)
 
     # Generate provisioning URL for Google Authenticator or similar apps
-    provisioning_url = totp.provisioning_uri(name=user_id, issuer_name='BroxelAuth')
+    provisioning_url = totp.provisioning_uri(name=secret, issuer_name='BroxelAuth')
 
     # Generate QR code as base64 image
     qr_img = qrcode.make(provisioning_url)
@@ -51,7 +51,7 @@ if 'secret' not in st.session_state:
 
 # User Key input for enrollment
 with st.form(key='enrollment_form'):
-    user_key_input = st.text_input("Enter a unique User Key", max_chars=50)
+    user_key_input = st.text_input("Enter an email (testing purposes as UserId)", max_chars=50)
     submit_enroll = st.form_submit_button("Enroll")
 
 if submit_enroll and user_key_input:
@@ -59,7 +59,7 @@ if submit_enroll and user_key_input:
     provisioning_url, qr_img_b64, secret = enroll_user(user_key_input)
     st.session_state['secret'] = secret  # Persist the secret key in session state
 
-    st.write(f"User Key: {secret}")
+    st.write(f"User Secret: {secret}")
     st.write(f"User Key: {user_key_input}")
     st.write(f"Provisioning URL: [Scan with your authenticator app]({provisioning_url})")
 
