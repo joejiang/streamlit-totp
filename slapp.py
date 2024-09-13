@@ -60,6 +60,7 @@ if submit_enroll and user_key_input:
     provisioning_url, qr_img_b64, secret = enroll_user(user_key_input)
     st.session_state['secret'] = secret  # Persist the secret key in session state
 
+    st.write(f"User Key: {secret}")
     st.write(f"User Key: {user_key_input}")
     st.write(f"Provisioning URL: [Scan with your authenticator app]({provisioning_url})")
 
